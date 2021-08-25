@@ -39,12 +39,16 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const removeItemHandle = (id) => {
+    dispatch({type:'REMOVE_ITEM',id})
+  }
+
   useEffect(() => {
     fetchData(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ ...state ,removeItemHandle}}>{children}</AppContext.Provider>
   );
 };
 // make sure use
