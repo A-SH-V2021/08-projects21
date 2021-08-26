@@ -46,12 +46,16 @@ const AppProvider = ({ children }) => {
   const searchHandle = (insideInput) => {
     dispatch({ type: `SEARCH_VALUE`, payload: insideInput });
   };
+
+  const pageHandle = () => {
+    
+  }
   useEffect(() => {
     fetchData(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
   }, [state.query]);
 
   return (
-    <AppContext.Provider value={{ ...state, removeItemHandle, searchHandle }}>
+    <AppContext.Provider value={{ ...state, removeItemHandle, searchHandle,pageHandle }}>
       {children}
     </AppContext.Provider>
   );
