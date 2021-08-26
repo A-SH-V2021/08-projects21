@@ -17,9 +17,11 @@ const reducer = (state, action) => {
         hits: action.payload.hits,
         nbPage: action.payload.nbPage,
       };
-      case 'REMOVE_ITEM':
-        let newHits=state.hits.filter(item=>item.objectID!==action.id)
-        return {...state,hits:newHits}
+    case "REMOVE_ITEM":
+      let newHits = state.hits.filter((item) => item.objectID !== action.id);
+      return { ...state, hits: newHits };
+    case "SEARCH_VALUE":
+      return { ...state, query: action.payload, page: 0 };
     default:
       throw new Error(`this error is from ${action.type}`);
   }

@@ -29,7 +29,7 @@ const AppProvider = ({ children }) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-     
+
       dispatch({
         type: "GET_STORIES",
         payload: { hits: data.hits, nbPage: data.nbPages },
@@ -40,15 +40,20 @@ const AppProvider = ({ children }) => {
   };
 
   const removeItemHandle = (id) => {
-    dispatch({type:'REMOVE_ITEM',id})
-  }
+    dispatch({ type: "REMOVE_ITEM", id });
+  };
 
+  const searchHandle = (insideInput) => {
+    dispatch({ type: `SEARCH_VALUE`, payload: insideInput });
+  };
   useEffect(() => {
     fetchData(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
-  }, []);
+  }, [state.query]);
 
   return (
-    <AppContext.Provider value={{ ...state ,removeItemHandle}}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ ...state, removeItemHandle, searchHandle }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 // make sure use
