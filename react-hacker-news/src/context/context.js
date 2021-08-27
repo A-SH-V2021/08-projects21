@@ -1,12 +1,5 @@
 import React, { useContext, useEffect, useReducer } from "react";
 
-import {
-  SET_LOADING,
-  SET_STORIES,
-  REMOVE_STORY,
-  HANDLE_PAGE,
-  HANDLE_SEARCH,
-} from "../components/actions";
 import reducer from "../reduce/reducer";
 
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?";
@@ -47,12 +40,16 @@ const AppProvider = ({ children }) => {
     dispatch({ type: `SEARCH_VALUE`, payload: insideInput });
   };
 
-  const pageHandle = () => {
-    
+  const pageHandle = (txt) => {
+    if (txt==='prev') {
+      dispatch({type:'HANDLE_PREV'})
+    }else{
+      dispatch({type:"HANDLE_NEXT"})
+    }
   }
   useEffect(() => {
     fetchData(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
-  }, [state.query]);
+  }, [state.query,state.page]);
 
   return (
     <AppContext.Provider value={{ ...state, removeItemHandle, searchHandle,pageHandle }}>

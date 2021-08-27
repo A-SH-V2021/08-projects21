@@ -3,6 +3,7 @@ import { useGlobalContext } from "../context/context";
 
 const Buttons = () => {
   const { page, nbPage, pageHandle } = useGlobalContext();
+  
   return (
     <div className="btn-container">
       <button onClick={() => pageHandle('prev')}>prev</button>
