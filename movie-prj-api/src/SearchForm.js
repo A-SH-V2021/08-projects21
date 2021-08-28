@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "./context";
 const SearchForm = () => {
-  const { query, setQuery } = useGlobalContext();
+  const { error, query, setQuery } = useGlobalContext();
   return (
     <form className="search-form">
       <h2>serach</h2>
@@ -11,7 +11,7 @@ const SearchForm = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <p className="error">error</p>
+      {error.show && <p className="error">{error.msg}</p>}
     </form>
   );
 };
