@@ -13,7 +13,7 @@ const SingleMovie = () => {
     setLoading(true);
     const res = await fetch(`${API_ENDPOINT}&i=${id}`);
     const result = await res.json();
-    console.log(result);
+
     if (result.Response === "True") {
       setMovie(result);
       setLoading(false);
@@ -40,7 +40,21 @@ const SingleMovie = () => {
       </div>
     );
   }
-  return <h2>single movie</h2>;
+
+  const { Title, Poster, Plot, Year } = movie;
+  return (
+    <section className="single-movie">
+      <img src={Poster} alt={Title} />
+      <div className="single-movie-info">
+        <h4>{Title}</h4>
+        <p>{Plot}</p>
+        <h4>{Year}</h4>
+        <Link to="/" className="btn">
+          back
+        </Link>
+      </div>
+    </section>
+  );
 };
 
 export default SingleMovie;
