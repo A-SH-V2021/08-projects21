@@ -3,7 +3,7 @@ import { useGlobalContext } from "./context";
 const SearchForm = () => {
   const { error, query, setQuery } = useGlobalContext();
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={(e) => e.preventDefault()}>
       <h2>serach</h2>
       <input
         type="text"
@@ -11,7 +11,7 @@ const SearchForm = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      {error.show && <p className="error">{error.msg}</p>}
+      {error.show && <div className="error">{error.msg}</div>}
     </form>
   );
 };
