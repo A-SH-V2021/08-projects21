@@ -23,8 +23,7 @@ const AppProvider = ({ children }) => {
   const [modal, setModal] = useState(false);
 
   const fetching = async () => {
-    
-    setWaiting(false)
+    setWaiting(false);
     setLoading(true);
     const response = await axios(url).catch((err) =>
       console.log(`error in get axios:`, err)
@@ -46,15 +45,38 @@ const AppProvider = ({ children }) => {
   };
 
   function createMarkup(inner) {
-    return {__html: `${inner}`};
+    return { __html: `${inner}` };
   }
+
+  const nextQueston = () => {
+    setIndex((prevIndex) => {
+      const index = prevIndex + 1;
+      if (index > questions.length - 1) {
+        // modal
+        return 0;
+      } else {
+        return index;
+      }
+      return index;
+    });
+  };
 
   useEffect(() => {
     fetching();
   }, []);
   return (
     <AppContext.Provider
-      value={{ waiting, loading, questions, correct, index, error, modal,createMarkup }}
+      value={{
+        waiting,
+        loading,
+        questions,
+        correct,
+        index,
+        error,
+        modal,
+        createMarkup,
+        nextQueston,
+      }}
     >
       {children}
     </AppContext.Provider>

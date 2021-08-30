@@ -6,8 +6,15 @@ import Modal from "./Modal";
 import Loading from "./Loading";
 
 function App() {
-  const { waiting, loading, questions, correct, index, createMarkup } =
-    useGlobalContext();
+  const {
+    waiting,
+    loading,
+    questions,
+    correct,
+    index,
+    createMarkup,
+    nextQueston,
+  } = useGlobalContext();
   if (waiting) {
     return <SetupForm />;
   }
@@ -39,7 +46,9 @@ function App() {
               );
             })}
           </div>
-          <button className="next-question">next quistion</button>
+          <button className="next-question" onClick={nextQueston}>
+            next quistion
+          </button>
         </article>
       </section>
     </main>
