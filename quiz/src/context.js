@@ -45,12 +45,16 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  function createMarkup(inner) {
+    return {__html: `${inner}`};
+  }
+
   useEffect(() => {
     fetching();
   }, []);
   return (
     <AppContext.Provider
-      value={{ waiting, loading, questions, correct, index, error, modal }}
+      value={{ waiting, loading, questions, correct, index, error, modal,createMarkup }}
     >
       {children}
     </AppContext.Provider>
