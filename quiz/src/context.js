@@ -24,8 +24,8 @@ const AppProvider = ({ children }) => {
 
   const fetching = async () => {
     
-    setLoading(true);
     setWaiting(false)
+    setLoading(true);
     const response = await axios(url).catch((err) =>
       console.log(`error in get axios:`, err)
     );
