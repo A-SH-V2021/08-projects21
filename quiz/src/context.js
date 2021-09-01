@@ -21,7 +21,11 @@ const AppProvider = ({ children }) => {
   const [index, setIndex] = useState(0);
   const [error, setError] = useState(false);
   const [modal, setModal] = useState(false);
-
+  const [quiz, setQuiz] = useState({
+    amount: 10,
+    category: "sport",
+    difficalty: "easy",
+  });
   const fetching = async () => {
     setWaiting(false);
     setLoading(true);
@@ -52,7 +56,7 @@ const AppProvider = ({ children }) => {
     setIndex((prevIndex) => {
       const index = prevIndex + 1;
       if (index > questions.length - 1) {
-        openModal()
+        openModal();
         return 0;
       } else {
         return index;
@@ -63,24 +67,29 @@ const AppProvider = ({ children }) => {
 
   const checkAnswer = (value) => {
     if (value) {
-      setCorrect((oldValue)=>oldValue+1)
+      setCorrect((oldValue) => oldValue + 1);
     }
-    nextQueston()
-  }
+    nextQueston();
+  };
 
   const openModal = () => {
-    setModal(true)
-  }
+    setModal(true);
+  };
 
   const closeModal = () => {
-    setCorrect(0)
-    setWaiting(true)
-    setModal(false)
-  }
-
-  useEffect(() => {
-    fetching();
-  }, []);
+    setCorrect(0);
+    setWaiting(true);
+    setModal(false);
+  };
+const handleChange = () => {
+  
+}
+const handleSubmit = (e) => {
+  e.preventDefault()
+}
+  // useEffect(() => {
+  //   fetching();
+  // }, []);
   return (
     <AppContext.Provider
       value={{
@@ -94,7 +103,10 @@ const AppProvider = ({ children }) => {
         createMarkup,
         nextQueston,
         checkAnswer,
-        closeModal
+        closeModal,
+        handleSubmit,
+        handleChange,
+        quiz,
       }}
     >
       {children}
