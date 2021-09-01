@@ -14,6 +14,7 @@ function App() {
     index,
     createMarkup,
     nextQueston,
+    checkAnswer
   } = useGlobalContext();
   if (waiting) {
     return <SetupForm />;
@@ -25,10 +26,10 @@ function App() {
 
   const { question, incorrect_answers, correct_answer } = questions[index];
   const answers = [...incorrect_answers, correct_answer];
-  console.log(questions);
+ 
   return (
     <main>
-      {/* <Modal/> */}
+      <Modal/>
       <section className="quiz">
         <p className="correct-answers">
           correct answer is {correct}/ {index}
@@ -42,6 +43,7 @@ function App() {
                   key={idx}
                   className="answer-btn"
                   dangerouslySetInnerHTML={createMarkup(`${answer}`)}
+                  onClick={()=>checkAnswer(correct_answer===answer)}
                 ></button>
               );
             })}
