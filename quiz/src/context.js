@@ -5,11 +5,11 @@ const table = {
   sports: 21,
   history: 23,
   politics: 24,
-  Science:{
-    Computers:18,
-    Mathematics:19
+  Science: {
+    Computers: 18,
+    Mathematics: 19,
   },
-  Animals:27,
+  Animals: 27,
 };
 
 const API_ENDPOINT = "https://opentdb.com/api.php?";
@@ -90,18 +90,14 @@ const AppProvider = ({ children }) => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name);
-    console.log(value);
-
     setQuiz({ ...quiz, [name]: value });
-    console.log(quiz);
   };
   const handleSubmit = (e) => {
-    const {category}=quiz
+    const { category } = quiz;
     e.preventDefault();
-    // const tmpURL = "https://opentdb.com/api.php?amount=10&category=21&difficulty=easy";
     url = `${API_ENDPOINT}amount=${quiz.amount}&category=${table[category]}&difficulty=${quiz.difficulty}&type=multiple`;
-    fetching(url)
+    console.log(table.Science.Computers);
+    fetching(url);
   };
 
   // useEffect(() => {
