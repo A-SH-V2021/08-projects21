@@ -26,28 +26,29 @@ const SetupForm = () => {
 
           {/* category */}
           <div className="form-control">
-            <label htmlFor="cat">category:</label>
+            <label htmlFor="category">category:</label>
             <select
-              name="cat"
-              id="cat"
+              name="category"
+              id="category"
               className="form-input"
               value={quiz.category}
               onChange={handleChange}
             >
-              <option value="sport">sport</option>
+              <option value="sports">sports</option>
               <option value="history">history</option>
               <option value="politics">politics</option>
+              <option value="Science: Computers">Science: Computers</option>
             </select>
           </div>
 
           {/* difficalty */}
           <div className="form-control">
-            <label htmlFor="diff">select difficulty:</label>
+            <label htmlFor="difficulty">select difficulty:</label>
             <select
-              name="diff"
-              id="diff"
+              name="difficulty"
+              id="difficulty"
               className="form-input"
-              value={quiz.difficalty}
+              value={quiz.difficulty}
               onChange={handleChange}
             >
               <option value="easy">easy</option>
