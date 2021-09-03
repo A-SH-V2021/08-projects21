@@ -5,10 +5,7 @@ const table = {
   sports: 21,
   history: 23,
   politics: 24,
-  Science: {
-    Computers: 18,
-    Mathematics: 19,
-  },
+  Science_Computers:18,
   Animals: 27,
 };
 
@@ -96,7 +93,7 @@ const AppProvider = ({ children }) => {
     const { category } = quiz;
     e.preventDefault();
     url = `${API_ENDPOINT}amount=${quiz.amount}&category=${table[category]}&difficulty=${quiz.difficulty}&type=multiple`;
-    console.log(table.Science.Computers);
+   console.log(url);
     fetching(url);
   };
 
